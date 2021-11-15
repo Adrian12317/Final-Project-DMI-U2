@@ -1,7 +1,5 @@
 import styled from 'styled-components/native';
 
-
-
 export const StyledContainer = styled.View`
     flex: 1;
     align-items: center;
@@ -16,7 +14,7 @@ export const InputContainer = styled.View`
 export const ImageLogo = styled.Image`
     width: 220;
     height: 220;
-    margin-left: 52px;
+    margin-left: 40;
     margin-bottom: 20;
 `;
 
@@ -53,7 +51,6 @@ export const StyledButtonTextOutline = styled.Text`
 
 export const StyledButton= styled.TouchableOpacity`
     width: 100%;
-    margin-top: 12;
     padding-top: 12;
     padding-bottom: 12;
     padding-right: 12;

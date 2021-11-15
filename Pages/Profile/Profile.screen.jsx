@@ -1,8 +1,8 @@
 import React, { useState,useEffect } from 'react'
-import { StyleSheet, Text, View } from 'react-native';
 import { Avatar } from 'react-native-elements';
 import CameraScreen from '../Camera/Camera';
 import { database,auth,storage } from '../../firebase';
+import {StyledContainer, StyledText} from './styledProfileComponent';
 
 export default function Profile() {
     const [takePhoto,setTakePhoto] = useState(false)
@@ -20,8 +20,7 @@ export default function Profile() {
                 myData.push({id,...values[id]})
             }
              setName(myData[0].username);
-             setEmail(myData[0].email);
-            // setList(allValues)        
+             setEmail(myData[0].email);     
          })
          storage.ref(auth.currentUser.uid + '/profile.jpg').getDownloadURL ().then((imgUrl) => {
             setAvatar(imgUrl); 
@@ -35,8 +34,8 @@ export default function Profile() {
         <>
         {!takePhoto?(
             
-        <View style={styles.container}>
-            <Text style={styles.textTitle}>Profile</Text>
+        <StyledContainer>
+            <StyledText>Profile</StyledText>
             <Avatar
                 rounded
                 size="xlarge"
@@ -45,9 +44,9 @@ export default function Profile() {
                 }}
                 onPress={()=>setTakePhoto(true)}
             />
-            <Text style={styles.textTitle}>{name}</Text>
-            <Text style={styles.textTitle}>{email}</Text>
-        </View>
+            <StyledText>{name}</StyledText>
+            <StyledText>{email}</StyledText>
+        </StyledContainer>
         ):
         (
             <CameraScreen setTakePhoto={setTakePhoto} setAvatar={setAvatar}/>
@@ -58,18 +57,3 @@ export default function Profile() {
         
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      alignItems: "center",
-      backgroundColor: "black",
-    },
-    textTitle: {
-        color: "white",
-        fontWeight: "700",
-        fontSize: 20,
-        marginTop:5
-    },
-   
-  });

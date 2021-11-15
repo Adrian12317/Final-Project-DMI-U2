@@ -10,16 +10,15 @@ import {
   View,
 } from "react-native";
 import { 
-  StyledContainer,
-  StyledinputContainer,
-  Styledinput,
-  StyledbuttonContainer,
-  StyledbuttonOutline,  
-  Styledlogo } from './styledLogin';
-
-import { Styledbutton, 
-  StyledbuttonText,
-  StyledbuttonOutlineText,} from './styledBtnLogin';
+  StyledContainer, 
+  InputContainer, 
+  ImageLogo, 
+  StyledInput, 
+  StyledButtonContainer, 
+  StyledButtonText, 
+  StyledButtonTextOutline,
+  StyledButton,
+  StyledButtonOutline } from './styledLogin';
   
 import { auth } from "../../firebase";
 import logo from "../../media/images/utags.png";
@@ -60,36 +59,31 @@ const LoginPage = () => {
 
   return (
     <StyledContainer>
-    <KeyboardAvoidingView style={styles.container} behavior="padding">
-      <StyledinputContainer >
-        <Styledlogo source={logo} style={styles.logo} />
-      
-        <Styledinput
+    <InputContainer>
+      <ImageLogo source={logo}/>
+
+      <StyledInput
           placeholder="Email"
           value={email}
           onChangeText={(text) => setEmail(text)}
         />
-        <Styledinput
+        <StyledInput
           placeholder="Password"
           value={pwd}
           onChangeText={(text) => setPwd(text)}
           secureTextEntry
         />
-      </StyledinputContainer>
-     
-      <StyledbuttonContainer style={styles.buttonContainer}>
-        <Styledbutton onPress={handleLogin} style={styles.button}>
-          <StyledbuttonText style={styles.buttonText}>Login</StyledbuttonText>
-        </Styledbutton>
-        <Styledbutton
-          onPress={handleSignup}
-          style={[styles.button, styles.buttonOutline]}
-        >
-          <StyledbuttonText>Sign Up</StyledbuttonText>
-        </Styledbutton>
-      </StyledbuttonContainer>
-    </KeyboardAvoidingView>
-    </StyledContainer>
+    </InputContainer>
+   
+    <StyledButtonContainer>
+      <StyledButton onPress={handleLogin}>
+          <StyledButtonText>Login</StyledButtonText>
+      </StyledButton>
+      <StyledButton onPress={handleSignup}>
+        <StyledButtonText>Sign Up</StyledButtonText>
+      </StyledButton>
+    </StyledButtonContainer>
+  </StyledContainer>
   );
 };
 export default LoginPage;
