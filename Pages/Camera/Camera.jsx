@@ -5,6 +5,7 @@ import { useIsFocused } from "@react-navigation/native";
 import { styles } from './styledCamera';
 import { auth,storage} from '../../firebase';
 import * as ImagePicker from 'expo-image-picker';
+import { useNavigation } from "@react-navigation/core";
 
 export default function CameraScreen({setTakePhoto,setAvatar}) {
   const [hasPermission, setHasPermission] = useState(null);
@@ -12,6 +13,7 @@ export default function CameraScreen({setTakePhoto,setAvatar}) {
   const [isLoading, setIsLoading] = useState(false);
   let camera = Camera;
   const isFocused = useIsFocused();
+  const navigation = useNavigation();
 
 
  
@@ -65,6 +67,10 @@ export default function CameraScreen({setTakePhoto,setAvatar}) {
       setType(Camera.Constants.Type.back);
     }
   };
+
+  const __back = () => {
+    navigation.replace("Home");
+  }
   
 
   useEffect(() => {
@@ -110,8 +116,7 @@ export default function CameraScreen({setTakePhoto,setAvatar}) {
             source={{ uri: 'https://cdn-icons.flaticon.com/png/512/4495/premium/4495678.png?token=exp=1636851275~hmac=56691b5caf11a2bed9663443f96509a0' }}
             style={{
               height: 40,
-              width: 40,
-                           
+              width: 40,     
             }}
           />
       </TouchableOpacity>
@@ -150,7 +155,19 @@ export default function CameraScreen({setTakePhoto,setAvatar}) {
           />
       </TouchableOpacity>
       </View>
-      
+
+      <View style={styles.goBack}>
+        <TouchableOpacity
+          onPress={__back}>
+              <ImageBackground
+              source={{ uri: 'https://cdn-icons-png.flaticon.com/512/5510/5510468.png' }}
+              style={{
+                height: 40,
+                width: 40,    
+              }}
+            />
+        </TouchableOpacity>
+      </View>      
     
       
      <View style={styles.cameraBottomContainer}>

@@ -105,8 +105,14 @@ export const styles = StyleSheet.create({
       pickImage: {
         margin:8,
         alignItems: "flex-start",
-        marginBottom:40,
+        marginBottom:-50,
         marginLeft:30
+      },
+      goBack: {
+        margin:8,
+        alignItems: "flex-end",
+        marginBottom:40,
+        marginRight:30
       },
       returnProfile: {
         margin:8,

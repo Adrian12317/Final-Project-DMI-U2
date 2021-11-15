@@ -1,17 +1,19 @@
 import { useNavigation } from "@react-navigation/core";
 import React, { useEffect, useState } from "react";
 import {
-  Image,
-  KeyboardAvoidingView,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
-
+  StyledContainer, 
+  InputContainer, 
+  ImageLogo, 
+  StyledInput, 
+  StyledButtonContainer, 
+  StyledButtonText, 
+  StyledButtonTextOutline,
+  StyledButton,
+  StyledButtonOutline
+} from './styledRegisterComponent';
 import { auth, database } from "../../firebase";
 import logo from "../../media/images/utags.png";
+
 const RegisterPage = () => {
 
   const [email, setEmail] = useState("");
@@ -72,103 +74,37 @@ const RegisterPage = () => {
 
   return (
    
-    <KeyboardAvoidingView style={styles.container} behavior="padding">
-      <View style={styles.inputContainer}>
-        <Image source={logo} style={styles.logo} />
+    <StyledContainer>
+      <InputContainer>
+        <ImageLogo source={logo}/>
 
-        <TextInput
+        <StyledInput
           placeholder="Username"
           value={userName}
           onChangeText={(text) => setUserName(text)}
-          style={styles.input}
         />
-        <TextInput
+        <StyledInput
           placeholder="Email"
           value={email}
           onChangeText={(text) => setEmail(text)}
-          style={styles.input}
         />
-        <TextInput
+        <StyledInput
           placeholder="Password"
           value={pwd}
           onChangeText={(text) => setPwd(text)}
-          style={styles.input}
           secureTextEntry
         />
-      </View>
+      </InputContainer>
      
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          onPress={handleSignup}
-          style={[styles.button, styles.buttonOutline]}
-        >
-          <Text style={styles.buttonOutlineText}>Sign Up</Text>
-        </TouchableOpacity>
-        <Text onClick={()=>handleReturnLogin()} style={styles.buttonTextBack}> Back to login </Text>
-      </View>
-    </KeyboardAvoidingView>
+      <StyledButtonContainer>
+        <StyledButton onPress={handleSignup}>
+          <StyledButtonText>Sign Up</StyledButtonText>
+        </StyledButton>
+        <StyledButtonOutline onPress={()=>handleReturnLogin()}>
+          <StyledButtonTextOutline>Back To Login</StyledButtonTextOutline>
+        </StyledButtonOutline>
+      </StyledButtonContainer>
+    </StyledContainer>
   );
 };
 export default RegisterPage;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "black",
-  },
-  inputContainer: {
-    width: "80%",
-  },
-  input: {
-    backgroundColor: "white",
-    color:"black",
-    paddingHorizontal: 15,
-    paddingVertical: 10,
-    borderRadius: 10,
-    marginTop: 5,
-    borderColor:"white"
-  },
-  buttonContainer: {
-    width: "60%",
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 40,
-  },
-  button: {
-    backgroundColor: "#0782F9",
-    width: "100%",
-    padding: 15,
-    borderRadius: 10,
-    alignItems: "center",
-  },
-  buttonOutline: {
-    backgroundColor: "white",
-    marginTop: 5,
-    borderColor: "#0782F9",
-    borderWidth: 2,
-  },
-  buttonText: {
-    color: "white",
-    fontWeight: "700",
-    fontSize: 16,
-  },
-  buttonTextBack: {
-    color: "white",
-    fontWeight: "700",
-    fontSize: 16,
-    marginTop:5
-  },
-  buttonOutlineText: {
-    color: "#0782F9",
-    fontWeight: "700",
-    fontSize: 16,
-  },
-  logo: {
-    width: 220,
-    height: 220,
-    marginLeft: 40,
-    marginBottom: 20,
-  },
-});
