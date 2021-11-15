@@ -14,7 +14,7 @@ export const InputContainer = styled.View`
 export const ImageLogo = styled.Image`
     width: 220;
     height: 220;
-    margin-left: 40;
+    margin-left: 52;
     margin-bottom: 20;
 `;
 
