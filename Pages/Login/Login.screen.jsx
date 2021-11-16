@@ -9,7 +9,17 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-
+import { 
+  StyledContainer, 
+  InputContainer, 
+  ImageLogo, 
+  StyledInput, 
+  StyledButtonContainer, 
+  StyledButtonText, 
+  StyledButtonTextOutline,
+  StyledButton,
+  StyledButtonOutline } from './styledLogin';
+  
 import { auth } from "../../firebase";
 import logo from "../../media/images/utags.png";
 const LoginPage = () => {
@@ -40,7 +50,6 @@ const LoginPage = () => {
       .then((userCredentials) => {
    
         const user = userCredentials.user;
-        console.log("Logged in with:", user.email);
       })
       .catch((error) => {
        
@@ -49,38 +58,32 @@ const LoginPage = () => {
   };
 
   return (
-   
-    <KeyboardAvoidingView style={styles.container} behavior="padding">
-      <View style={styles.inputContainer}>
-        <Image source={logo} style={styles.logo} />
-      
-        <TextInput
+    <StyledContainer>
+    <InputContainer>
+      <ImageLogo source={logo}/>
+
+      <StyledInput
           placeholder="Email"
           value={email}
           onChangeText={(text) => setEmail(text)}
-          style={styles.input}
         />
-        <TextInput
+        <StyledInput
           placeholder="Password"
           value={pwd}
           onChangeText={(text) => setPwd(text)}
-          style={styles.input}
           secureTextEntry
         />
-      </View>
-     
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={handleLogin} style={styles.button}>
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={handleSignup}
-          style={[styles.button, styles.buttonOutline]}
-        >
-          <Text style={styles.buttonOutlineText}>Sign Up</Text>
-        </TouchableOpacity>
-      </View>
-    </KeyboardAvoidingView>
+    </InputContainer>
+   
+    <StyledButtonContainer>
+      <StyledButton onPress={handleLogin}>
+          <StyledButtonText>Login</StyledButtonText>
+      </StyledButton>
+      <StyledButton onPress={handleSignup}>
+        <StyledButtonText>Sign Up</StyledButtonText>
+      </StyledButton>
+    </StyledButtonContainer>
+  </StyledContainer>
   );
 };
 export default LoginPage;
@@ -90,53 +93,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "black",
+    backgroundColor: "#cf8538",
   },
-  inputContainer: {
-    width: "80%",
-  },
-  input: {
-    backgroundColor: "white",
-    color:"black",
-    paddingHorizontal: 15,
-    paddingVertical: 10,
-    borderRadius: 10,
-    marginTop: 5,
-    borderColor:"white"
-  },
-  buttonContainer: {
-    width: "60%",
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 40,
-  },
-  button: {
-    backgroundColor: "#0782F9",
-    width: "100%",
-    padding: 15,
-    borderRadius: 10,
-    alignItems: "center",
-  },
-  buttonOutline: {
-    backgroundColor: "white",
-    marginTop: 5,
-    borderColor: "#0782F9",
-    borderWidth: 2,
-  },
-  buttonText: {
-    color: "white",
-    fontWeight: "700",
-    fontSize: 16,
-  },
-  buttonOutlineText: {
-    color: "#0782F9",
-    fontWeight: "700",
-    fontSize: 16,
-  },
-  logo: {
-    width: 220,
-    height: 220,
-    marginLeft: 40,
-    marginBottom: 20,
-  },
+
 });
