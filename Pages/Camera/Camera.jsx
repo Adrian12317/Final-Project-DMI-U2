@@ -6,6 +6,7 @@ import { styles } from './styledCamera';
 import { auth,storage} from '../../firebase';
 import * as ImagePicker from 'expo-image-picker';
 import { useNavigation } from "@react-navigation/core";
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 export default function CameraScreen({setTakePhoto,setAvatar}) {
   const [hasPermission, setHasPermission] = useState(null);
@@ -112,13 +113,7 @@ export default function CameraScreen({setTakePhoto,setAvatar}) {
           onPress={()=>{setTakePhoto(false)}}
           
         >
-            <ImageBackground
-            source={{ uri: 'https://cdn-icons.flaticon.com/png/512/4495/premium/4495678.png?token=exp=1636851275~hmac=56691b5caf11a2bed9663443f96509a0' }}
-            style={{
-              height: 40,
-              width: 40,     
-            }}
-          />
+            <Ionicons name="chevron-back" size={50}/>
       </TouchableOpacity>
       </View>
       
@@ -127,15 +122,7 @@ export default function CameraScreen({setTakePhoto,setAvatar}) {
           onPress={__switchCamera}
           
         >
-            <ImageBackground
-            source={{ uri: 'https://cdn-icons.flaticon.com/png/512/1817/premium/1817493.png?token=exp=1636148419~hmac=6353f73ce8403e396144071568f33cfc' }}
-            style={{
-              height: 40,
-              width: 40,
-              float:'rigth'
-                           
-            }}
-          />
+            <Ionicons name="camera-reverse" size={50}/>
       </TouchableOpacity>
       </View>
 
@@ -144,28 +131,14 @@ export default function CameraScreen({setTakePhoto,setAvatar}) {
           onPress={__pickImage}
           
         >
-            <ImageBackground
-            source={{ uri: 'https://cdn-icons-png.flaticon.com/512/5510/5510468.png' }}
-            style={{
-              height: 40,
-              width: 40,
-              float:'rigth'
-                           
-            }}
-          />
+            <Ionicons name="images" size={50}/>
       </TouchableOpacity>
       </View>
 
       <View style={styles.goBack}>
         <TouchableOpacity
           onPress={__back}>
-              <ImageBackground
-              source={{ uri: 'https://cdn-icons-png.flaticon.com/512/5510/5510468.png' }}
-              style={{
-                height: 40,
-                width: 40,    
-              }}
-            />
+              {/* <Ionicons name="chevron-back" size={50}/> */}
         </TouchableOpacity>
       </View>      
     
@@ -176,15 +149,7 @@ export default function CameraScreen({setTakePhoto,setAvatar}) {
               onPress={__takePicture}
               style={styles.cameraTakePictureButtonContainer}
             >
-               <ImageBackground
-                source={{ uri: 'https://cdn-icons.flaticon.com/png/512/1998/premium/1998337.png?token=exp=1636148360~hmac=ca624c3b49c35ed781bb0d384f409d26' }}
-                style={{
-                  height: 60,
-                  width: 62,
-                  
-                  
-                }}
-              />
+               <Ionicons name="aperture" size={65}/>
               </TouchableOpacity>
               
           </View>

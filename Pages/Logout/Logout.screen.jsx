@@ -1,7 +1,10 @@
 import React from 'react'
 import { useNavigation } from "@react-navigation/core";
 import { auth } from '../../firebase';
-import { TouchableOpacity,Text } from 'react-native';
+import { TouchableOpacity } from 'react-native';
+import { StyledView, StyledIcon } from './StyleLogout'
+import Ionicons from 'react-native-vector-icons/Ionicons'
+
 
 export default function Logout() {
     const navigation = useNavigation();
@@ -16,10 +19,16 @@ export default function Logout() {
           });
       };
     return(
- 
-     <TouchableOpacity onPress={handleSignOut}>
-        <Text >Sign Out</Text>
-     </TouchableOpacity>
+
+      <StyledView>
+        <TouchableOpacity onPress={handleSignOut}>
+          <StyledIcon>
+            <Ionicons name="log-out" size={35}/>
+          </StyledIcon>
+          
+        </TouchableOpacity>
+      </StyledView>
+     
 
     );
 }
