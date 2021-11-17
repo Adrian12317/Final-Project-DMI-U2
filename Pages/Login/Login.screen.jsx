@@ -9,38 +9,38 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { 
-  StyledContainer, 
-  InputContainer, 
-  ImageLogo, 
-  StyledInput, 
-  StyledButtonContainer, 
-  StyledButtonText, 
+import {
+  StyledContainer,
+  InputContainer,
+  ImageLogo,
+  StyledInput,
+  StyledButtonContainer,
+  StyledButtonText,
   StyledButtonTextOutline,
   StyledButton,
   StyledButtonOutline } from './styledLogin';
-  
+
 import { auth } from "../../firebase";
-import logo from "../../media/images/utags.png";
+import logo from "../../media/images/login.png";
 const LoginPage = () => {
 
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
 
   const navigation = useNavigation();
-  
+
   useEffect(() => {
     const unsuscribe = auth.onAuthStateChanged((user) => {
-     
+
       if (user) {
-       
+
         navigation.replace("Home");
       }
     });
-    
+
     return unsuscribe;
   }, []);
-  
+
   const handleSignup = () => {
     navigation.replace("Register");
   };
@@ -48,11 +48,11 @@ const LoginPage = () => {
     auth
       .signInWithEmailAndPassword(email, pwd)
       .then((userCredentials) => {
-   
+
         const user = userCredentials.user;
       })
       .catch((error) => {
-       
+
         alert(error.message);
       });
   };
@@ -74,7 +74,7 @@ const LoginPage = () => {
           secureTextEntry
         />
     </InputContainer>
-   
+
     <StyledButtonContainer>
       <StyledButton onPress={handleLogin}>
           <StyledButtonText>Login</StyledButtonText>

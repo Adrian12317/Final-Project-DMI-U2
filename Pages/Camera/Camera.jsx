@@ -17,11 +17,11 @@ export default function CameraScreen({setTakePhoto,setAvatar}) {
   const navigation = useNavigation();
 
 
- 
+
    const __takePicture = async () => {
-   
+
      const photo = await camera.takePictureAsync();
-        
+
      const response = await fetch(photo.uri);
      const blob = await response.blob();
      setIsLoading(true)
@@ -32,7 +32,7 @@ export default function CameraScreen({setTakePhoto,setAvatar}) {
       }).catch(error => {
         console.log(error.message);
       })
-      
+
    };
 
    const __pickImage = async () => {
@@ -53,14 +53,14 @@ export default function CameraScreen({setTakePhoto,setAvatar}) {
       }).catch(error => {
         console.log(error.message);
       })
-    
+
 
     if (!result.cancelled) {
       setImage(result.uri);
     }
   };
 
-  
+
    const __switchCamera = () => {
     if (type === Camera.Constants.Type.back) {
       setType(Camera.Constants.Type.front);
@@ -72,7 +72,7 @@ export default function CameraScreen({setTakePhoto,setAvatar}) {
   const __back = () => {
     navigation.replace("Home");
   }
-  
+
 
   useEffect(() => {
     (async () => {
@@ -87,12 +87,12 @@ export default function CameraScreen({setTakePhoto,setAvatar}) {
   if (hasPermission === false) {
     return <Text>No access to camera</Text>;
   }
-  
+
   return (
- 
-  <View style={styles.container}> 
+
+  <View style={styles.container}>
     {isLoading?(
-    <ActivityIndicator size="large" color="#0000ff" />
+    <ActivityIndicator size="large" color="#5cca0e" />
     ):
     (
         <Text></Text>
@@ -111,16 +111,16 @@ export default function CameraScreen({setTakePhoto,setAvatar}) {
           <View style={styles.returnProfile}>
       <TouchableOpacity
           onPress={()=>{setTakePhoto(false)}}
-          
+
         >
             <Ionicons name="chevron-back" size={50}/>
       </TouchableOpacity>
       </View>
-      
+
     <View style={styles.changeCamera}>
     <TouchableOpacity
           onPress={__switchCamera}
-          
+
         >
             <Ionicons name="camera-reverse" size={50}/>
       </TouchableOpacity>
@@ -129,7 +129,7 @@ export default function CameraScreen({setTakePhoto,setAvatar}) {
       <View style={styles.pickImage}>
     <TouchableOpacity
           onPress={__pickImage}
-          
+
         >
             <Ionicons name="images" size={50}/>
       </TouchableOpacity>
@@ -140,9 +140,9 @@ export default function CameraScreen({setTakePhoto,setAvatar}) {
           onPress={__back}>
               {/* <Ionicons name="chevron-back" size={50}/> */}
         </TouchableOpacity>
-      </View>      
-    
-      
+      </View>
+
+
      <View style={styles.cameraBottomContainer}>
           <View style={styles.cameraBottomInnerContainer}>
             <TouchableOpacity
@@ -151,10 +151,10 @@ export default function CameraScreen({setTakePhoto,setAvatar}) {
             >
                <Ionicons name="aperture" size={65}/>
               </TouchableOpacity>
-              
+
           </View>
         </View>
-    
+
     </Camera>
   </View>
 
@@ -165,11 +165,8 @@ export default function CameraScreen({setTakePhoto,setAvatar}) {
     )}
     </View>
 
-    
+
   );
 
-  
+
 }
-
-
-  

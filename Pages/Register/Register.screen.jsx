@@ -1,18 +1,18 @@
 import { useNavigation } from "@react-navigation/core";
 import React, { useEffect, useState } from "react";
 import {
-  StyledContainer, 
-  InputContainer, 
-  ImageLogo, 
-  StyledInput, 
-  StyledButtonContainer, 
-  StyledButtonText, 
+  StyledContainer,
+  InputContainer,
+  ImageLogo,
+  StyledInput,
+  StyledButtonContainer,
+  StyledButtonText,
   StyledButtonTextOutline,
   StyledButton,
   StyledButtonOutline
 } from './styledRegisterComponent';
 import { auth, database } from "../../firebase";
-import logo from "../../media/images/utags.png";
+import logo from "../../media/images/login.png";
 
 const RegisterPage = () => {
 
@@ -21,24 +21,24 @@ const RegisterPage = () => {
   const [pwd, setPwd] = useState("");
 
   const navigation = useNavigation();
-  
+
   useEffect(() => {
     const unsuscribe = auth.onAuthStateChanged((user) => {
-     
+
       if (user) {
-       
+
         navigation.replace("Home");
       }
     });
-    
+
     return unsuscribe;
   }, []);
-  
+
   const handleSignup = () => {
     auth
       .createUserWithEmailAndPassword(email, pwd)
       .then((userCredentials) => {
-       
+
         const user = userCredentials.user;
 
 
@@ -58,11 +58,11 @@ const RegisterPage = () => {
         console.log();
         console.log(".................");
        });
-        
+
 
       })
       .catch((error) => {
-        
+
         alert(error.message);
       });
   };
@@ -70,10 +70,10 @@ const RegisterPage = () => {
   const handleReturnLogin = () => {
     navigation.replace("Login");
   };
-  
+
 
   return (
-   
+
     <StyledContainer>
       <InputContainer>
         <ImageLogo source={logo}/>
@@ -95,7 +95,7 @@ const RegisterPage = () => {
           secureTextEntry
         />
       </InputContainer>
-     
+
       <StyledButtonContainer>
         <StyledButton onPress={handleSignup}>
           <StyledButtonText>Sign Up</StyledButtonText>

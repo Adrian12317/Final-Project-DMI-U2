@@ -20,9 +20,9 @@ export default function HomePage() {
           let iconName;
          if (route.name === "TodoList") {
             iconName = focused ?
-            "ios-images"
+            "ios-list-sharp"
             :
-            "ios-images-outline";
+            "ios-list-outline";
           }else if (route.name === "Profile") {
             iconName = focused ?
             "ios-person-sharp"
@@ -35,9 +35,9 @@ export default function HomePage() {
         tabBarInactiveTintColor :"grey",
       })}
       >
-       
-       
-        <Tab.Screen name="TodoList" 
+
+
+        <Tab.Screen name="TodoList"
          options={{
           headerRight: () => (
             <LogOut  />
@@ -46,8 +46,8 @@ export default function HomePage() {
         >
         {(props) => <TodoList{...props} />}</Tab.Screen>
 
-        
-        <Tab.Screen name="Profile" 
+
+        <Tab.Screen name="Profile"
          options={{
           headerRight: () => (
             <LogOut  />
@@ -55,7 +55,7 @@ export default function HomePage() {
         }}
         >
         {(props) => <Profile{...props} />}</Tab.Screen>
-        
+
       </Tab.Navigator>
     </>
   );
